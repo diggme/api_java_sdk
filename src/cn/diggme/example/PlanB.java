@@ -15,8 +15,8 @@ class PlanB {
     public static void main(String... args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         int ChannelId = 0;
-        String appKey = "interneltest#h5";
-        String appSecret = "lgKJ7XJt4A6F9X71DWrOkn4eZhDtZnJA";
+        String appKey = "";
+        String appSecret = "";
 
         try {
             // 初始化SDK
@@ -37,6 +37,8 @@ class PlanB {
             System.out.println("getTestCategoryList >>>>>>");
             System.out.println(categoryList);
 
+            //【合作商可以同步测试列表到本地商品模块做外键test_id绑定】
+
             // 获取测试列表
             int categoryId = 0;
             int page = 1;
@@ -50,21 +52,8 @@ class PlanB {
             System.out.println("getTestDetail >>>>>>");
             System.out.println(testModel);
 
-            // 获取单广告 [可选功能]
-            int frameId = 1;
-            AdBannerModel bannerModel = sdk.getAdBanner(frameId);
-            System.out.println("getAdBanner >>>>>>");
-            System.out.println(bannerModel);
+            //【合作商可以同步测试列表到本地商品模块做外键test_id绑定】
 
-            // 获取多个广告 [可选功能]
-            ArrayList<AdBannerModel> banners = sdk.getAdBanners(frameId);
-            System.out.println("getAdBanners >>>>>>");
-            System.out.println(banners);
-
-            // 获取广告位 [可选功能]
-            ArrayList<AdFrameModel> adFrameList = sdk.getAdFrameList();
-            System.out.println("getAdFrameList >>>>>>");
-            System.out.print(adFrameList);
 
             // 获取测试兑换码
             // 合作商订单ID、或订单流水
@@ -87,6 +76,9 @@ class PlanB {
             // 人口学、答题、报告逻辑已封装好的H5
             // is_iframe 是否iframe模式
             String h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id={0}&test_id={1}&in_code={2}&is_iframe=1";
+            h5Url.replace("{0}", String.valueOf(ChannelId))
+                    .replace("{1}", String.valueOf(testList.get(0).getId()))
+                    .replace("{2}", String.valueOf(inCode));
 
 
         } catch (InvalidParamsException e) {
