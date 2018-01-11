@@ -19,12 +19,25 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestQuestionModel implements Serializable {
 
+    @JsonProperty("id")
     private int id;
+
+    @JsonProperty("title")
     private String title;
+
+    @JsonProperty("image")
     private String image;
+
+    @JsonProperty("type")
     private String type;
+
+    @JsonProperty("during")
     private int during;
+
+    @JsonProperty("is_image")
     private int isImage;
+
+    @JsonProperty("options")
     private ArrayList<?> options;
 
     public int getId() {
@@ -83,4 +96,16 @@ public class TestQuestionModel implements Serializable {
         this.options = options;
     }
 
+    @Override
+    public String toString() {
+        return "TestQuestionModel{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
+                ", type='" + type + '\'' +
+                ", during=" + during +
+                ", isImage=" + isImage +
+                ", options=" + options +
+                '}';
+    }
 }

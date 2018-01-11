@@ -10,11 +10,11 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-class Demo {
+class PlanB {
 
     public static void main(String... args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
-
+        int ChannelId = 0;
         String appKey = "interneltest#h5";
         String appSecret = "lgKJ7XJt4A6F9X71DWrOkn4eZhDtZnJA";
 
@@ -76,12 +76,17 @@ class Demo {
             // 合作商支付成功后, 回调通知DiggMe该in_code已支付
             String encryptData = (new JSONObject())
                     .put("status", "success")
-                    .put("in_code", "c6237665a5599575f07b-yca3KkNj")
+                    .put("in_code", inCode)
                     .toString();
 
             Boolean isSuccess = sdk.postNotifyPayCb(encryptData);
             System.out.println("postNotifyPayCb >>>>>>");
             System.out.println(isSuccess);
+
+            // 加载提供网址
+            // 人口学、答题、报告逻辑已封装好的H5
+            // is_iframe 是否iframe模式
+            String h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id={0}&test_id={1}&in_code={2}&is_iframe=1";
 
 
         } catch (InvalidParamsException e) {

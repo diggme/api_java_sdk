@@ -397,7 +397,7 @@ public class DiggmeSdk {
      * @throws InvalidParamsException
      * @throws RemoteServerException
      */
-    public ArrayList<TestQuestionModel> getQuestionList(String inCode, int testId, int roleId) throws InvalidParamsException, RemoteServerException {
+    public ArrayList<TestQuestionModel> getTestQuestionList(String inCode, int testId, int roleId) throws InvalidParamsException, RemoteServerException {
         Map<String, String> params = new HashMap<>();
         params.put("in_code", inCode);
         params.put("test_id", String.valueOf(testId));
@@ -498,6 +498,30 @@ public class DiggmeSdk {
         }
         return result.getJSONObject("data").getString("code");
     }
+
+    /**
+     * 提交测试结果
+     *
+     * @param testId
+     * @param inCode
+     * @param choices
+     * @return
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public boolean postTestResult(int testId, String inCode, String choices) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("in_code", inCode);
+        params.put("choices", choices);
+
+        JSONObject result = makeRequest("channel/test/result", "post", params);
+        if (result.isNull("data")) {
+            return false;
+        }
+        return result.getInt("http_status") == 200;
+    }
+
 
     /**
      * 订单状态回调 (支付成功)
