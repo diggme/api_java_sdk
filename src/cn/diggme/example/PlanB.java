@@ -75,11 +75,13 @@ class PlanB {
             // 加载提供网址
             // 人口学、答题、报告逻辑已封装好的H5
             // is_iframe 是否iframe模式
-            String h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id={0}&test_id={1}&in_code={2}&is_iframe=1";
-            h5Url.replace("{0}", String.valueOf(ChannelId))
-                    .replace("{1}", String.valueOf(testList.get(0).getId()))
-                    .replace("{2}", String.valueOf(inCode));
-
+            String h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
+            h5Url = String.format(h5Url,
+                    String.valueOf(ChannelId),
+                    String.valueOf(testList.get(0).getId()),
+                    String.valueOf(inCode));
+            System.out.println("reportUrl >>>>>>");
+            System.out.println(h5Url);
 
         } catch (InvalidParamsException e) {
             e.printStackTrace();
