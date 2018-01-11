@@ -2,10 +2,7 @@ package cn.diggme.example;
 
 import cn.diggme.*;
 import cn.diggme.exceptions.*;
-import cn.diggme.models.AccessTokenModel;
-import cn.diggme.models.AdBannerModel;
-import cn.diggme.models.TestCategoryModel;
-import cn.diggme.models.TestModel;
+import cn.diggme.models.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -18,15 +15,15 @@ class Demo {
     public static void main(String... args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
 
-        String appKey = "";
-        String appSecret = "";
+        String appKey = "interneltest#h5";
+        String appSecret = "lgKJ7XJt4A6F9X71DWrOkn4eZhDtZnJA";
 
         try {
             // 初始化SDK
             DiggmeSdk sdk = new DiggmeSdk(appKey, appSecret);
 
             // 设置sdk接口环境 develop / production
-            sdk.setEnv("local");
+            sdk.setEnv("develop");
 
             // 获取访问令牌 (合作商可使用缓存方案,避免频繁获取的网络延时)
             AccessTokenModel accessTokenModel = sdk.getOpenAccessToken("client_credential");
@@ -48,22 +45,31 @@ class Demo {
             System.out.println("getTestList >>>>>>");
             System.out.println(testList);
 
-            // 获取单广告位
+            // 获取测试详情
+            TestModel testModel = sdk.getTestDetail(testList.get(0).getId());
+            System.out.println("getTestDetail >>>>>>");
+            System.out.println(testModel);
+
+            // 获取单广告 [可选功能]
             int frameId = 1;
             AdBannerModel bannerModel = sdk.getAdBanner(frameId);
             System.out.println("getAdBanner >>>>>>");
             System.out.println(bannerModel);
 
-            // 获取多个广告位
+            // 获取多个广告 [可选功能]
             ArrayList<AdBannerModel> banners = sdk.getAdBanners(frameId);
-            System.out.println("getAdBanner >>>>>>");
-            System.out.println(bannerModel);
+            System.out.println("getAdBanners >>>>>>");
+            System.out.println(banners);
+
+            // 获取广告位 [可选功能]
+            ArrayList<AdFrameModel> adFrameList = sdk.getAdFrameList();
+            System.out.println("getAdFrameList >>>>>>");
+            System.out.print(adFrameList);
 
             // 获取测试兑换码
             // 合作商订单ID、或订单流水
             String outTradeNo = "your_order_id_2";
-            TestModel testModel = testList.get(0);
-            String inCode = sdk.getTestCode(testModel.getId(), outTradeNo);
+            String inCode = sdk.getTestCode(testList.get(0).getId(), outTradeNo);
             System.out.println("getTestCode >>>>>>");
             System.out.println(inCode);
 

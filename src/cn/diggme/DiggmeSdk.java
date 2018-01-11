@@ -3,6 +3,7 @@ package cn.diggme;
 import cn.diggme.exceptions.InvalidParamsException;
 import cn.diggme.exceptions.RemoteServerException;
 import cn.diggme.models.*;
+import cn.diggme.models.enums.TestInfoEnum;
 import cn.diggme.utils.EncryptHelper;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -104,7 +105,7 @@ public class DiggmeSdk {
                 HttpRequestWithBody request = Unirest.post(this.serverUrl.concat(path)).header("Authorization", this.accessToken);
                 while (entries.hasNext()) {
                     Map.Entry<?, ?> entry = entries.next();
-                    request.field((String) entry.getKey(),entry.getValue());
+                    request.field((String) entry.getKey(), entry.getValue());
                 }
                 jsonResponse = request.asJson();
                 System.out.print("POST:URL >>>>>> ");
@@ -182,7 +183,7 @@ public class DiggmeSdk {
     }
 
     /**
-     * 获取单个广告位
+     * 获取单个广告
      *
      * @param frameId
      * @return AdBannerModel | null
@@ -208,7 +209,7 @@ public class DiggmeSdk {
     }
 
     /**
-     * 获取多个广告位
+     * 获取多个广告
      *
      * @param frameId
      * @return ArrayList<AdBannerModel> | null
@@ -231,6 +232,36 @@ public class DiggmeSdk {
                 JSONObject jsonObject = (JSONObject) it.next();
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), AdBannerModel.class));
+            }
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 广告位列表
+     *
+     * @return ArrayList<AdFrameModel> | null
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public ArrayList<AdFrameModel> getAdFrameList() throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+
+        JSONObject result = makeRequest("channel/ad/frame/list", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        try {
+            JSONArray data = result.getJSONArray("data");
+            ArrayList<AdFrameModel> list = new ArrayList<>();
+            Iterator it = data.iterator();
+            while (it.hasNext()) {
+                JSONObject jsonObject = (JSONObject) it.next();
+                ObjectMapper mapper = new ObjectMapper();
+                list.add(mapper.readValue(jsonObject.toString(), AdFrameModel.class));
             }
             return list;
         } catch (IOException e) {
@@ -267,6 +298,123 @@ public class DiggmeSdk {
                 JSONObject jsonObject = (JSONObject) it.next();
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), TestModel.class));
+            }
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 测试详情
+     *
+     * @param testId
+     * @return TestModel | null
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public TestModel getTestDetail(int testId) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+
+        JSONObject result = makeRequest("channel/test/detail", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        try {
+            JSONObject jsonObject = result.getJSONObject("data");
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(jsonObject.toString(), TestModel.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 提交测试人口信息
+     *
+     * @param testId
+     * @param inCode
+     * @param setting
+     * @param roleId
+     * @return boolean
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public boolean getTestInfo(int testId, String inCode, String setting, int roleId) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("role_id", String.valueOf(roleId));
+        params.put("in_code", inCode);
+        params.put("setting", setting);
+
+        JSONObject result = makeRequest("channel/test/info", "post", params);
+        if (result.isNull("data")) {
+            return false;
+        }
+        return result.getInt("http_status") == 200;
+    }
+
+    /**
+     * 获取测试人口学信息
+     *
+     * @return ArrayList<TestInfoModel> | null
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public ArrayList<TestInfoModel> getTestInfoList() throws InvalidParamsException, RemoteServerException {
+
+        Map<String, String> params = new HashMap<>();
+
+        JSONObject result = makeRequest("channel/test/info/list", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        try {
+            JSONArray data = result.getJSONArray("data");
+            ArrayList<TestInfoModel> list = new ArrayList<>();
+            Iterator it = data.iterator();
+            while (it.hasNext()) {
+                JSONObject jsonObject = (JSONObject) it.next();
+                ObjectMapper mapper = new ObjectMapper();
+                list.add(mapper.readValue(jsonObject.toString(), TestInfoModel.class));
+            }
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 题目列表
+     *
+     * @param inCode
+     * @param testId
+     * @param roleId
+     * @return
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public ArrayList<TestQuestionModel> getQuestionList(String inCode, int testId, int roleId) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("in_code", inCode);
+        params.put("test_id", String.valueOf(testId));
+        params.put("role_id", String.valueOf(roleId));
+
+        JSONObject result = makeRequest("channel/test/question", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        try {
+            JSONArray data = result.getJSONArray("data");
+            ArrayList<TestQuestionModel> list = new ArrayList<>();
+            Iterator it = data.iterator();
+            while (it.hasNext()) {
+                JSONObject jsonObject = (JSONObject) it.next();
+                ObjectMapper mapper = new ObjectMapper();
+                list.add(mapper.readValue(jsonObject.toString(), TestQuestionModel.class));
             }
             return list;
         } catch (IOException e) {
