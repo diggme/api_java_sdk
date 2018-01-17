@@ -14,6 +14,7 @@ class PlanB {
 
     public static void main(String... args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
+        // 填写必要信息
         int ChannelId = 0;
         String appKey = "";
         String appSecret = "";
