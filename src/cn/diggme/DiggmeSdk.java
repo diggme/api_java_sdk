@@ -466,7 +466,7 @@ public class DiggmeSdk {
         params.put("in_code", inCode);
         params.put("test_id", String.valueOf(testId));
 
-        JSONObject result = makeRequest("channel/ad/banner", "get", params);
+        JSONObject result = makeRequest("channel/test/codeStatus", "get", params);
         if (result.isNull("data")) {
             return null;
         }
