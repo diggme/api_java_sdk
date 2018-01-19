@@ -76,7 +76,12 @@ class PlanB {
             // 加载提供网址
             // 人口学、答题、报告逻辑已封装好的H5
             // is_iframe 是否iframe模式
-            String h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
+            String h5Url;
+            if (sdk.getEnv().equals("prod")) {
+                h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
+            } else {
+                h5Url = "https://wxdev.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
+            }
             h5Url = String.format(h5Url,
                     String.valueOf(ChannelId),
                     String.valueOf(testList.get(0).getId()),
