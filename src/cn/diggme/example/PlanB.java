@@ -16,8 +16,8 @@ class PlanB {
 
         // 填写必要信息
         int ChannelId = 0;
-        String appKey = "interneltest#h5";
-        String appSecret = "lgKJ7XJt4A6F9X71DWrOkn4eZhDtZnJA";
+        String appKey = "";
+        String appSecret = "";
 
 
         try {

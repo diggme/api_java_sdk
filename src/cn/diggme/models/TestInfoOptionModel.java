@@ -1,16 +1,42 @@
 package cn.diggme.models;
 
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TestInfoOptionModel {
+import java.io.Serializable;
 
+/**
+ * TestInfoOptionModel
+ *
+ * @author Develop
+ * @modified 2017-11-08
+ * @copyright develop@diggme.cn
+ * @lisence MIT
+ */
+@SuppressWarnings("serial")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TestInfoOptionModel implements Serializable {
+
+    @JsonProperty("id")
     private int id;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("label")
     private String label;
+
+    @JsonProperty("value")
     private String value;
+
+    @JsonProperty("role_id")
     private int roleId;
+
+    @JsonProperty("role_level")
     private int roleLevel;
+
+    @JsonProperty("disabled")
     private boolean disabled;
 
     public int getId() {

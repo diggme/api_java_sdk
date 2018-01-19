@@ -357,13 +357,15 @@ public class DiggmeSdk {
     /**
      * 获取测试人口学信息
      *
-     * @return ArrayList<TestInfoModel> | null
+     * @param testId
+     * @return
      * @throws InvalidParamsException
      * @throws RemoteServerException
      */
-    public ArrayList<TestInfoModel> getTestInfoList() throws InvalidParamsException, RemoteServerException {
+    public ArrayList<TestInfoModel> getTestInfoList(int testId) throws InvalidParamsException, RemoteServerException {
 
         Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
 
         JSONObject result = makeRequest("channel/test/info/list", "get", params);
         if (result.isNull("data")) {

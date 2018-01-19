@@ -80,8 +80,9 @@ class PlanC {
             // ------------ 人口学信息与角色页面 ------------
 
             // 获取人口学信息列表
-            ArrayList<TestInfoModel> infoList = sdk.getTestInfoList();
-
+            ArrayList<TestInfoModel> infoList = sdk.getTestInfoList(testList.get(0).getId());
+            System.out.println("getTestInfoList >>>>>>");
+            System.out.println(infoList);
 
             // 提交用户填写的测试人口学信息 和 角色ID
 
@@ -92,6 +93,8 @@ class PlanC {
 
             // 获取答题列表
             ArrayList<TestQuestionModel> questionList = sdk.getTestQuestionList(inCode, testList.get(0).getId(), userRoleId);
+            System.out.println("getTestQuestionList >>>>>>");
+            System.out.println(questionList);
 
             // 提交答案
 //            sdk.postTestResult()
