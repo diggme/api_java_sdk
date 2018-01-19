@@ -534,9 +534,6 @@ public class DiggmeSdk {
         params.put("encrypt_data", encryptData);
 
         JSONObject result = makeRequest("channel/notify/payCb", "post", params);
-        if (result.isNull("data")) {
-            return false;
-        }
         return result.getInt("http_status") == 200;
     }
 

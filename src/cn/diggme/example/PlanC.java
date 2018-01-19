@@ -1,24 +1,23 @@
 package cn.diggme.example;
 
-import cn.diggme.*;
-import cn.diggme.exceptions.*;
+import cn.diggme.DiggmeSdk;
+import cn.diggme.exceptions.InvalidParamsException;
+import cn.diggme.exceptions.RemoteServerException;
 import cn.diggme.models.*;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-class PlanB {
+class PlanC {
 
     public static void main(String... args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         // 填写必要信息
         int ChannelId = 0;
-        String appKey = "interneltest#h5";
-        String appSecret = "lgKJ7XJt4A6F9X71DWrOkn4eZhDtZnJA";
-
+        String appKey = "";
+        String appSecret = "";
 
         try {
             // 初始化SDK
@@ -56,7 +55,6 @@ class PlanB {
 
             //【合作商可以同步测试列表到本地商品模块做外键test_id绑定】
 
-
             // 获取测试兑换码
             // 合作商订单ID、或订单流水
             String outTradeNo = "your_order_id_" + Math.random();
@@ -74,21 +72,33 @@ class PlanB {
             System.out.println("postNotifyPayCb >>>>>>");
             System.out.println(isSuccess);
 
-            // 加载提供网址
-            // 人口学、答题、报告逻辑已封装好的H5
-            // is_iframe 是否iframe模式
-            String h5Url;
-            if (sdk.getEnv().equals("prod")) {
-                h5Url = "https://wx.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
-            } else {
-                h5Url = "https://wxdev.diggme.cn/channel/entry.html?channel_id=%s&test_id=%s&in_code=%s&is_iframe=1";
-            }
-            h5Url = String.format(h5Url,
-                    String.valueOf(ChannelId),
-                    String.valueOf(testList.get(0).getId()),
-                    String.valueOf(inCode));
-            System.out.println("reportUrl >>>>>>");
-            System.out.println(h5Url);
+            // 获取InCode状态, 如是否需要人口信息、是否需要角色填写、是否已生成报告
+            TestCodeStatusModel statusModel = sdk.getTestCodeStatus(inCode, testList.get(0).getId());
+            System.out.println("getTestCodeStatus >>>>>>");
+            System.out.println(statusModel);
+
+            // ------------ 人口学信息与角色页面 ------------
+
+            // 获取人口学信息列表
+            ArrayList<TestInfoModel> infoList = sdk.getTestInfoList();
+
+
+            // 提交用户填写的测试人口学信息 和 角色ID
+
+            // ------------ 答题页面 ------------
+
+            // 用户选择的角色id, 可读取getTestCodeStatus获取
+            int userRoleId = 0;
+
+            // 获取答题列表
+            ArrayList<TestQuestionModel> questionList = sdk.getTestQuestionList(inCode, testList.get(0).getId(), userRoleId);
+
+            // 提交答案
+//            sdk.postTestResult()
+
+            // ------------ 报告页面 ------------
+
+//            sdk.getTestReport()
 
         } catch (InvalidParamsException e) {
             e.printStackTrace();
