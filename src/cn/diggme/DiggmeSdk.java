@@ -227,9 +227,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<AdBannerModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), AdBannerModel.class));
             }
@@ -257,9 +256,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<AdFrameModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), AdFrameModel.class));
             }
@@ -280,11 +278,11 @@ public class DiggmeSdk {
      * @throws InvalidParamsException
      * @throws RemoteServerException
      */
-    public ArrayList<TestModel> getTestList(int categoryId, int size, int page) throws InvalidParamsException, RemoteServerException {
+    public ArrayList<TestModel> getTestList(int categoryId, int page, int size) throws InvalidParamsException, RemoteServerException {
         Map<String, String> params = new HashMap<>();
-        params.put("frame_id", String.valueOf(categoryId));
-        params.put("size", String.valueOf(size));
+        params.put("category_id", String.valueOf(categoryId));
         params.put("page", String.valueOf(page));
+        params.put("size", String.valueOf(size));
 
         JSONObject result = makeRequest("channel/test/list", "get", params);
         if (result.isNull("data")) {
@@ -293,9 +291,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<TestModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), TestModel.class));
             }
@@ -316,6 +313,7 @@ public class DiggmeSdk {
      */
     public TestModel getTestDetail(int testId) throws InvalidParamsException, RemoteServerException {
         Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
 
         JSONObject result = makeRequest("channel/test/detail", "get", params);
         if (result.isNull("data")) {
@@ -374,9 +372,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<TestInfoModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), TestInfoModel.class));
             }
@@ -410,9 +407,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<TestQuestionModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), TestQuestionModel.class));
             }
@@ -441,9 +437,8 @@ public class DiggmeSdk {
         try {
             JSONArray data = result.getJSONArray("data");
             ArrayList<TestCategoryModel> list = new ArrayList<>();
-            Iterator it = data.iterator();
-            while (it.hasNext()) {
-                JSONObject jsonObject = (JSONObject) it.next();
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.getJSONObject(i);
                 ObjectMapper mapper = new ObjectMapper();
                 list.add(mapper.readValue(jsonObject.toString(), TestCategoryModel.class));
             }
