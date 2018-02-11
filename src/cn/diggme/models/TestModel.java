@@ -267,6 +267,6 @@ public class TestModel implements Serializable {
                 ", baseCategoryBrief='" + baseCategoryBrief + '\'' +
                 ", baseCategoryImg='" + baseCategoryImg + '\'' +
                 ", baseCategoryPic='" + baseCategoryPic + '\'' +
-                '}';
+                '}' + '\n';
     }
 }

@@ -33,9 +33,6 @@ public class TestInfoOptionModel implements Serializable {
     @JsonProperty("role_id")
     private int roleId;
 
-    @JsonProperty("role_level")
-    private int roleLevel;
-
     @JsonProperty("disabled")
     private boolean disabled;
 
@@ -79,14 +76,6 @@ public class TestInfoOptionModel implements Serializable {
         this.roleId = roleId;
     }
 
-    public int getRoleLevel() {
-        return roleLevel;
-    }
-
-    public void setRoleLevel(int roleLevel) {
-        this.roleLevel = roleLevel;
-    }
-
     public boolean isDisabled() {
         return disabled;
     }
@@ -103,8 +92,7 @@ public class TestInfoOptionModel implements Serializable {
                 ", label='" + label + '\'' +
                 ", value='" + value + '\'' +
                 ", roleId=" + roleId +
-                ", roleLevel=" + roleLevel +
                 ", disabled=" + disabled +
-                '}';
+                '}' + '\n';
     }
 }

@@ -18,10 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class DiggmeSdk {
 
@@ -95,6 +92,7 @@ public class DiggmeSdk {
      * @return
      * @throws InvalidParamsException
      * @throws RemoteServerException
+     * @SuppressWarnings("unchecked")
      */
     protected JSONObject makeRequest(String path, String method, Map<String, String> params) throws InvalidParamsException, RemoteServerException {
         try {
@@ -103,10 +101,12 @@ public class DiggmeSdk {
 
             if (method.toLowerCase().equals("post")) {
                 HttpRequestWithBody request = Unirest.post(this.serverUrl.concat(path)).header("Authorization", this.accessToken);
+                HashMap<String, Object> bodyParams = new HashMap<>();
                 while (entries.hasNext()) {
                     Map.Entry<?, ?> entry = entries.next();
-                    request.field((String) entry.getKey(), entry.getValue());
+                    bodyParams.put((String) entry.getKey(), entry.getValue());
                 }
+                request.fields(bodyParams);
                 jsonResponse = request.asJson();
                 System.out.print("POST:URL >>>>>> ");
                 System.out.println(request.getUrl());
@@ -340,7 +340,7 @@ public class DiggmeSdk {
      * @throws InvalidParamsException
      * @throws RemoteServerException
      */
-    public boolean getTestInfo(int testId, String inCode, String setting, int roleId) throws InvalidParamsException, RemoteServerException {
+    public boolean postTestInfo(int testId, String inCode, String setting, int roleId) throws InvalidParamsException, RemoteServerException {
         Map<String, String> params = new HashMap<>();
         params.put("test_id", String.valueOf(testId));
         params.put("role_id", String.valueOf(roleId));
@@ -348,9 +348,7 @@ public class DiggmeSdk {
         params.put("setting", setting);
 
         JSONObject result = makeRequest("channel/test/info", "post", params);
-        if (result.isNull("data")) {
-            return false;
-        }
+
         return result.getInt("http_status") == 200;
     }
 

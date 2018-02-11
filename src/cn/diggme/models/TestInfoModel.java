@@ -80,7 +80,7 @@ public class TestInfoModel {
                 ", code='" + code + '\'' +
                 ", type='" + type + '\'' +
                 ", options=" + options +
-                '}';
+                '}' + '\n';
     }
 
 }
