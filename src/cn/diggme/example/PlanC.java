@@ -116,7 +116,7 @@ class PlanC {
             userRoleId = 1;
 
             // 获取答题列表
-            ArrayList<TestQuestionModel> questionList = sdk.getTestQuestionList(inCode, testList.get(0).getId(), userRoleId);
+            ArrayList<TestQuestionModel> questionList = sdk.getTestQuestionList(inCode, testModel.getId(), userRoleId);
             System.out.println("getTestQuestionList >>>>>>");
             System.out.println(questionList);
 
