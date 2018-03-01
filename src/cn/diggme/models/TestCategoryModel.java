@@ -17,21 +17,39 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestCategoryModel implements Serializable {
 
+    /**
+     * 测试分类ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 测试分类名称
+     */
     @JsonProperty("name")
     private String name;
 
+    /**
+     * 测试分类图表
+     */
     @JsonProperty("icon")
     private String icon;
 
+    /**
+     * 测试分类简介
+     */
     @JsonProperty("brief")
     private String brief;
 
+    /**
+     * 测试小图
+     */
     @JsonProperty("img")
     private String img;
 
+    /**
+     * 测试图表
+     */
     @JsonProperty("pic")
     private String pic;
 

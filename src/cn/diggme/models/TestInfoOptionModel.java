@@ -18,21 +18,39 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestInfoOptionModel implements Serializable {
 
+    /**
+     * 人口信息选项ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 人口信息选项名称
+     */
     @JsonProperty("name")
     private String name;
 
+    /**
+     * 人口信息选项名称
+     */
     @JsonProperty("label")
     private String label;
 
+    /**
+     * 人口信息选项值
+     */
     @JsonProperty("value")
     private String value;
 
+    /**
+     * 人口信息选项绑定角色ID
+     */
     @JsonProperty("role_id")
     private int roleId;
 
+    /**
+     * 人口信息选项是否可用
+     */
     @JsonProperty("disabled")
     private boolean disabled;
 

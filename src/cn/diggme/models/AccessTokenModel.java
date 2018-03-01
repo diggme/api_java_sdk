@@ -9,12 +9,21 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessTokenModel implements Serializable {
 
+    /**
+     * 访问令牌
+     */
     @JsonProperty("access_token")
     private String accessToken;
 
+    /**
+     * 令牌有效时间
+     */
     @JsonProperty("expire_in")
     private int expireIn;
 
+    /**
+     * 刷新令牌（暂不使用）
+     */
     @JsonProperty("refresh_token")
     private String refreshToken;
 

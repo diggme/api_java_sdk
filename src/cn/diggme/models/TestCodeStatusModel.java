@@ -17,69 +17,137 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestCodeStatusModel implements Serializable {
 
+    /**
+     * 是否需要角色信息
+     */
     @JsonProperty("require_role")
     private int requireRole;
 
+    /**
+     * 是否需要人口信息
+     */
     @JsonProperty("require_info")
     private int requireInfo;
 
+    /**
+     * 是否完成角色设置
+     */
     @JsonProperty("is_role_finish")
     private int isRoleFinish;
 
+    /**
+     * 是否完成人口学设置
+     */
     @JsonProperty("is_info_finish")
     private int isInfoFinish;
 
+    /**
+     * 是否完成测试
+     */
     @JsonProperty("is_test_finish")
     private int isTestFinish;
 
-    @JsonProperty("is_test_package")
-    private int isTestPackage;
 
+    /**
+     * 支付状态
+     */
     @JsonProperty("is_order_pay")
     private int isOrderPay;
 
+    /**
+     * 订单ID
+     */
     @JsonProperty("order_id")
     private int orderId;
 
+    /**
+     * 测试ID
+     */
     @JsonProperty("test_id")
     private int testId;
 
+    /**
+     * 测试次数限制
+     */
     @JsonProperty("test_limit_time")
     private int testLimitTime;
 
+    /**
+     * 测试间隔限制（未生效）
+     */
     @JsonProperty("test_limit_time_gap")
     private int testLimitTimeGap;
 
+    /**
+     * 测试答题类型（可选）
+     * qa：对话形式
+     * normal：普通形式
+     * 此字段用于当前测试中建议使用的答题场景
+     */
     @JsonProperty("test_qa_template")
     private String testQaTemplate;
 
+    /**
+     * 测试类型
+     * 0：普通测试
+     * 4：跳转测试
+     */
     @JsonProperty("test_calculate_id")
     private int testCalculateId;
 
-    @JsonProperty("test_hide_prev_btn")
-    private int testHidePrevBtn;
-
+    /**
+     * 测试结果匹配标题文案
+     * 当 is_test_package 字段为 1 时生效
+     */
     @JsonProperty("test_package_title")
     private String testPackageTitle;
 
+    /**
+     * 测试结果匹配标题简述
+     * 当 is_test_package 字段为 1 时生效
+     */
     @JsonProperty("test_package_brief")
     private String testPackageBrief;
 
+    /**
+     * 是否匹配测试
+     */
+    @JsonProperty("is_test_package")
+    private int isTestPackage;
+
+    /**
+     * 用户选择的角色ID
+     */
     @JsonProperty("user_role_id")
     private int userRoleId;
 
+    /**
+     * 用户结果ID
+     */
     @JsonProperty("user_result_id")
     private int userResultId;
 
+    /**
+     * 用户剩余测试次数
+     */
     @JsonProperty("user_limit_time_remain")
     private int userLimitTimeRemain;
 
+    /**
+     * 是否分段测试
+     */
     @JsonProperty("require_part")
     private int requirePart;
 
+    /**
+     * 用户当前阶段的分段ID
+     */
     @JsonProperty("user_part_id")
     private int userPartId;
 
+    /**
+     * 用户下个阶段的分段ID
+     */
     @JsonProperty("next_part_id")
     private int nextPartId;
 
@@ -187,14 +255,6 @@ public class TestCodeStatusModel implements Serializable {
         return testCalculateId;
     }
 
-    public void setTestHidePrevBtn(int testHidePrevBtn) {
-        this.testHidePrevBtn = testHidePrevBtn;
-    }
-
-    public int getTestHidePrevBtn() {
-        return testHidePrevBtn;
-    }
-
     public void setTestPackageTitle(String testPackageTitle) {
         this.testPackageTitle = testPackageTitle;
     }
@@ -275,7 +335,6 @@ public class TestCodeStatusModel implements Serializable {
                 ", testLimitTimeGap=" + testLimitTimeGap +
                 ", testQaTemplate='" + testQaTemplate + '\'' +
                 ", testCalculateId=" + testCalculateId +
-                ", testHidePrevBtn=" + testHidePrevBtn +
                 ", testPackageTitle='" + testPackageTitle + '\'' +
                 ", testPackageBrief='" + testPackageBrief + '\'' +
                 ", userRoleId=" + userRoleId +

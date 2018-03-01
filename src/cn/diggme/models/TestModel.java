@@ -18,69 +18,138 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestModel implements Serializable {
 
+    /**
+     * 测试ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 测试大图
+     */
     @JsonProperty("img")
     private String img;
 
+    /**
+     * 测试小图
+     */
     @JsonProperty("pic")
     private String pic;
 
+    /**
+     * 测试标题
+     */
     @JsonProperty("title")
     private String title;
 
+    /**
+     * 测试简述
+     */
     @JsonProperty("brief")
     private String brief;
 
+    /**
+     * 测试详情
+     */
     @JsonProperty("content")
     private String content;
 
+    /**
+     * 测试价格
+     * channel.diggme.cn后台设置，此价格信息供参考，合作商可选择性采用
+     */
     @JsonProperty("price")
     private BigDecimal price;
 
+    /**
+     * 测试促销价格
+     * channel.diggme.cn后台设置，此价格信息供参考，合作商可选择性采用
+     */
     @JsonProperty("discount_price")
     private BigDecimal discountPrice;
 
+    /**
+     * 平台基础价
+     * Digg平台的基础售价，供参考
+     */
     @JsonProperty("base_price")
     private BigDecimal basePrice;
 
+    /**
+     * 测试所属分类ID
+     */
     @JsonProperty("category_id")
     private int categoryId;
 
+    /**
+     * 测试所属分类名称
+     */
     @JsonProperty("category_name")
     private String categoryName;
 
-    @JsonProperty("category_pic")
-    private String categoryPic;
-
+    /**
+     * 测试所属分类大图
+     */
     @JsonProperty("category_img")
     private String categoryImg;
 
+    /**
+     * 测试所属分类小图
+     */
+    @JsonProperty("category_pic")
+    private String categoryPic;
+
+    /**
+     * 测试所属分类简述
+     */
     @JsonProperty("category_brief")
     private String categoryBrief;
 
+    /**
+     * 测试人数（供参考）
+     */
     @JsonProperty("tested_num")
     private int testedNum;
 
+    /**
+     * 测试点赞数（供参考）
+     */
     @JsonProperty("like_num")
     private int likeNum;
 
+    /**
+     * 最大测试次数
+     */
     @JsonProperty("limit_time")
     private String limitTime;
 
+    /**
+     * 平台分类ID（供参考）
+     */
     @JsonProperty("base_category_id")
     private int baseCategoryId;
 
+    /**
+     * 平台分类名称（供参考）
+     */
     @JsonProperty("base_category_name")
     private String baseCategoryName;
 
+    /**
+     * 平台分类描述（供参考）
+     */
     @JsonProperty("base_category_brief")
     private String baseCategoryBrief;
 
+    /**
+     * 平台分类大图（供参考）
+     */
     @JsonProperty("base_category_img")
     private String baseCategoryImg;
 
+    /**
+     * 平台分类小图（供参考）
+     */
     @JsonProperty("base_category_pic")
     private String baseCategoryPic;
 

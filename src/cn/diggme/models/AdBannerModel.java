@@ -17,30 +17,59 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AdBannerModel implements Serializable {
 
+    /**
+     * 广告ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 绑定实体ID（可选）
+     * 如：object_id=1 object_name=test 则表示绑定了对应ID=1的测试
+     */
     @JsonProperty("object_id")
     private int objectId;
 
+    /**
+     * 绑定实体类型（可选）
+     * 如：object_id=1 object_name=test 则表示绑定了对应ID=1的测试
+     */
     @JsonProperty("object_name")
     private String objectName;
 
+    /**
+     * 广告标题
+     */
     @JsonProperty("title")
     private String title;
 
+    /**
+     * 广告外链
+     */
     @JsonProperty("url")
     private String url;
 
+    /**
+     * 广告封面图
+     */
     @JsonProperty("image")
     private String image;
 
+    /**
+     * 广告开始时间（可选）
+     */
     @JsonProperty("start")
     private String start;
 
+    /**
+     * 广告结束时间（可选）
+     */
     @JsonProperty("end")
     private String end;
 
+    /**
+     * 广告排序
+     */
     @JsonProperty("sort")
     private String sort;
 

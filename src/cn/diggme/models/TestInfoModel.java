@@ -17,18 +17,33 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestInfoModel {
 
+    /**
+     * 人口信息ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 人口信息名称
+     */
     @JsonProperty("name")
     private String name;
 
+    /**
+     * 人口信息代码
+     */
     @JsonProperty("code")
     private String code;
 
+    /**
+     * 人口信息类型
+     */
     @JsonProperty("type")
     private String type;
 
+    /**
+     * 人口信息选项
+     */
     @JsonProperty("options")
     private ArrayList<TestInfoOptionModel> options;
 

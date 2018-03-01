@@ -19,24 +19,55 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestQuestionModel implements Serializable {
 
+    /**
+     * 题目ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 题目标题
+     */
     @JsonProperty("title")
     private String title;
 
+    /**
+     * 题目图片
+     */
     @JsonProperty("image")
     private String image;
 
+    /**
+     * 题目类型
+     * radio_text：文字单选
+     * checkbox_text：文字多选
+     * radio_image：图片单选
+     * checkbox_image：图片多选
+     * sort_text：文字排序
+     * sort_image：图片排序
+     * cursor_text：文字游标
+     * cursor_image：图片游标
+     * fill_text：填空
+     * intro：指导语
+     */
     @JsonProperty("type")
     private String type;
 
+    /**
+     * 题目显示时间
+     */
     @JsonProperty("during")
     private int during;
 
+    /**
+     * 是否为图片题目
+     */
     @JsonProperty("is_image")
     private int isImage;
 
+    /**
+     * 题目选项
+     */
     @JsonProperty("options")
     private ArrayList<?> options;
 

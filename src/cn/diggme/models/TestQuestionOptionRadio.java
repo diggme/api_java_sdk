@@ -18,10 +18,15 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestQuestionOptionRadio implements Serializable{
 
-
+    /**
+     * 选项ID
+     */
     @JsonProperty("id")
     private int id;
 
+    /**
+     * 选项标题
+     */
     @JsonProperty("title")
     private String title;
 
