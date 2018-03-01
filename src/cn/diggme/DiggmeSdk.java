@@ -519,6 +519,50 @@ public class DiggmeSdk {
 
 
     /**
+     * 获取测试结果H5报告地址
+     *
+     * @param testId
+     * @param inCode
+     * @return
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public String getTestReportUrl(int testId, String inCode) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("in_code", inCode);
+        params.put("format", "html");
+
+        JSONObject result = makeRequest("channel/test/report", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        return result.getJSONObject("data").getString("url");
+    }
+
+    /**
+     * 获取测试结果JSON字符串
+     *
+     * @param testId
+     * @param inCode
+     * @return
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public JSONArray getTestReportJson(int testId, String inCode) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("in_code", inCode);
+        params.put("format", "json");
+
+        JSONObject result = makeRequest("channel/test/report", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        return result.getJSONArray("data");
+    }
+
+    /**
      * 订单状态回调 (支付成功)
      *
      * @param encryptData
