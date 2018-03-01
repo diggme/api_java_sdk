@@ -511,7 +511,7 @@ public class DiggmeSdk {
         params.put("choices", choices);
 
         JSONObject result = makeRequest("channel/test/result", "post", params);
-        if (result.isNull("data")) {
+        if (result.isNull("http_status")) {
             return false;
         }
         return result.getInt("http_status") == 200;
