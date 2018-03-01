@@ -55,6 +55,18 @@ public class TestModel implements Serializable {
     private String content;
 
     /**
+     * 是否需要角色信息
+     */
+    @JsonProperty("require_role")
+    private int requireRole;
+
+    /**
+     * 是否需要人口信息
+     */
+    @JsonProperty("require_info")
+    private int requireInfo;
+
+    /**
      * 测试价格
      * channel.diggme.cn后台设置，此价格信息供参考，合作商可选择性采用
      */
@@ -313,6 +325,38 @@ public class TestModel implements Serializable {
         this.baseCategoryPic = baseCategoryPic;
     }
 
+    public int getRequireRole() {
+        return requireRole;
+    }
+
+    public void setRequireRole(int requireRole) {
+        this.requireRole = requireRole;
+    }
+
+    public int getRequireInfo() {
+        return requireInfo;
+    }
+
+    public void setRequireInfo(int requireInfo) {
+        this.requireInfo = requireInfo;
+    }
+
+    public String getCategoryImg() {
+        return categoryImg;
+    }
+
+    public void setCategoryImg(String categoryImg) {
+        this.categoryImg = categoryImg;
+    }
+
+    public String getCategoryPic() {
+        return categoryPic;
+    }
+
+    public void setCategoryPic(String categoryPic) {
+        this.categoryPic = categoryPic;
+    }
+
     @Override
     public String toString() {
         return "TestModel{" +
@@ -322,11 +366,15 @@ public class TestModel implements Serializable {
                 ", title='" + title + '\'' +
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +
+                ", requireRole=" + requireRole +
+                ", requireInfo=" + requireInfo +
                 ", price=" + price +
                 ", discountPrice=" + discountPrice +
                 ", basePrice=" + basePrice +
                 ", categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
+                ", categoryImg='" + categoryImg + '\'' +
+                ", categoryPic='" + categoryPic + '\'' +
                 ", categoryBrief='" + categoryBrief + '\'' +
                 ", testedNum=" + testedNum +
                 ", likeNum=" + likeNum +
@@ -338,4 +386,5 @@ public class TestModel implements Serializable {
                 ", baseCategoryPic='" + baseCategoryPic + '\'' +
                 '}' + '\n';
     }
+    
 }
