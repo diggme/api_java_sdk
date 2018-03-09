@@ -494,6 +494,28 @@ public class DiggmeSdk {
         return result.getJSONObject("data").getString("code");
     }
 
+
+    /**
+     * 获取测试订单兑换码
+     *
+     * @param testId
+     * @param outTradeNo
+     * @param outerUserId
+     * @return String | null
+     */
+    public String getTestCode(int testId, String outTradeNo, String outerUserId) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("no", outTradeNo);
+        params.put("outer_user_id", outerUserId);
+
+        JSONObject result = makeRequest("channel/test/code", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        return result.getJSONObject("data").getString("code");
+    }
+
     /**
      * 提交测试结果
      *
