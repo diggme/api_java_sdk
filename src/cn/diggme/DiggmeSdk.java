@@ -483,15 +483,7 @@ public class DiggmeSdk {
      * @return String | null
      */
     public String getTestCode(int testId, String outTradeNo) throws InvalidParamsException, RemoteServerException {
-        Map<String, String> params = new HashMap<>();
-        params.put("test_id", String.valueOf(testId));
-        params.put("no", outTradeNo);
-
-        JSONObject result = makeRequest("channel/test/code", "get", params);
-        if (result.isNull("data")) {
-            return null;
-        }
-        return result.getJSONObject("data").getString("code");
+        return getTestCode(testId, outTradeNo, "");
     }
 
 
