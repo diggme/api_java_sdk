@@ -4,6 +4,7 @@ import cn.diggme.DiggmeSdk;
 import cn.diggme.exceptions.InvalidParamsException;
 import cn.diggme.exceptions.RemoteServerException;
 import cn.diggme.models.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
 
@@ -126,6 +127,12 @@ class PlanC {
             // ------------ 报告页面 ------------
 
 //            sdk.getTestReport();
+
+
+            // ------------ 报告原始数据 （需要渠道开通特别权限）--------------
+//            JSONObject jsonObject  = sdk.getTestResultExportOrigin(ChannelId,"xxxxxxxx_in_code");
+//            System.out.println(jsonObject);
+
 
         } catch (InvalidParamsException e) {
             e.printStackTrace();

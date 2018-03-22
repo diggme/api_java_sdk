@@ -577,6 +577,27 @@ public class DiggmeSdk {
     }
 
     /**
+     * 获取原始报告分数
+     * （需要：渠道特别权限）
+     *
+     * @return
+     * @throws InvalidParamsException
+     * @throws RemoteServerException
+     */
+    public JSONObject getTestResultExportOrigin(int testId, String inCode) throws InvalidParamsException, RemoteServerException {
+        Map<String, String> params = new HashMap<>();
+        params.put("test_id", String.valueOf(testId));
+        params.put("in_code", inCode);
+        params.put("format", "json");
+
+        JSONObject result = makeRequest("channel/test/result/exportOrigin", "get", params);
+        if (result.isNull("data")) {
+            return null;
+        }
+        return result.getJSONObject("data");
+    }
+
+    /**
      * 订单状态回调 (支付成功)
      *
      * @param encryptData
